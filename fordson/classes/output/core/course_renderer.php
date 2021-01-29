@@ -39,6 +39,7 @@ use pix_icon;
 use image_url;
 
 require_once($CFG->dirroot . '/course/renderer.php');
+require_once($CFG->dirroot . "/local/category_img/lib.php");
 
 /**
  * Course renderer class.
@@ -226,11 +227,9 @@ class course_renderer extends \theme_boost\output\core\course_renderer {
 
         $rcourseids = array_keys($courses);
         $acourseids = array_chunk($rcourseids, 3);
-        //Mihir for category 2 heading is available videos
-        if ($id == 2 ){
-			$newcourse = get_string('availablevideos','theme_fordson');
-		}else if($id!=0 and $id != 2){
-			$newcourse = get_string('availablecourses');
+        
+        if($id!=0){
+        $newcourse = get_string('availablecourses');
         } else {
             $newcourse = NULL;
         }
@@ -355,7 +354,7 @@ class course_renderer extends \theme_boost\output\core\course_renderer {
      */
         protected function coursecat_category(coursecat_helper $chelper, $coursecat, $depth) {
 
-        global $CFG, $OUTPUT;
+        global $CFG, $OUTPUT,$DB;
         // open category tag
         $classes = array('category');
         if (empty($coursecat->visible)) {
@@ -403,7 +402,7 @@ class course_renderer extends \theme_boost\output\core\course_renderer {
 			
 			
 			// ADD HERE GRID OPTIONS AND BOX CSS
-        $classes[] = 'col-sm-6 col-md-2 box-class';
+        $classes[] = 'col-sm-6 col-md-3 box-class';
         $content = '<div class="'.join(' ', $classes).'" data-categoryid="'.$coursecat->id.'" data-depth="'.$depth.'" data-showcourses="'.$chelper->get_show_courses().'" data-type="'.self::COURSECAT_TYPE_CATEGORY.'">';
         $content .= '<div class="cat-icon">';
 
@@ -414,13 +413,20 @@ class course_renderer extends \theme_boost\output\core\course_renderer {
         //$content .= '<i class="fa fa-5x fa-'.$val.'"></i>';
 		
 		//Mihir for HPCL category icon based on category idnumber
-		$catimgpath = $CFG->dirroot.'/theme/fordson/pix/catimages/'.$coursecat->idnumber.'.png';
-		if (file_exists($catimgpath)) {
-			$catimgurl = $CFG->wwwroot.'/theme/fordson/pix/catimages/'.$coursecat->idnumber.'.png';
-		} else {
-			$catimgurl = $CFG->wwwroot.'/theme/fordson/pix/default.png';
-		}
-		$content .= '<img height="80px" src="'.$catimgurl.'">';
+        //Rachita:for HPCL category icon based on category idnumber. 
+        $itemid = $DB->get_field('category_img','imgitemid',array('categoryid'=>$coursecat->id));
+        if(!empty($itemid)){
+            $catimgurl = local_category_img($itemid);
+        }else{
+            $catimgurl = $CFG->wwwroot.'/theme/fordson/pix/default.png';
+        }
+		// $catimgpath = $CFG->dirroot.'/theme/fordson/pix/'.$coursecat->idnumber.'.png';
+		// if (file_exists($catimgpath)) {
+		// 	$catimgurl = $CFG->wwwroot.'/theme/fordson/pix/'.$coursecat->idnumber.'.png';
+		// } else {
+		// 	$catimgurl = $CFG->wwwroot.'/theme/fordson/pix/default.png';
+		// }
+		$content .= '<img width="80px" src="'.$catimgurl.'">';
 		//end of Mihir
 		
                 //Cat title
@@ -442,62 +448,6 @@ class course_renderer extends \theme_boost\output\core\course_renderer {
         if($totalcount == $this->countcategories){
         }
         ++$this->countcategories;
-		
-		
-		
-			
-		} else {
-		
-		
-		
-		
-        // ADD HERE GRID OPTIONS AND BOX CSS
-        $classes[] = 'col-md-3 box-class';
-        $content = '<div class="'.join(' ', $classes).'" data-categoryid="'.$coursecat->id.'" data-depth="'.$depth.'" data-showcourses="'.$chelper->get_show_courses().'" data-type="'.self::COURSECAT_TYPE_CATEGORY.'">';
-        $content .= '<div class="cat-icon">';
-
-        // LOAD ICON
-        $val = theme_fordson_get_setting('catsicon');
-        $url= new moodle_url('/course/index.php', array('categoryid' => $coursecat->id));
-        $content .= '<a href="'.$url.'">';
-        //$content .= '<i class="fa fa-5x fa-'.$val.'"></i>';
-		
-		//Mihir for HPCL category icon based on category idnumber
-		$catimgpath = $CFG->dirroot.'/theme/fordson/pix/catimages/'.$coursecat->idnumber.'.png';
-		if (file_exists($catimgpath)) {
-			$catimgurl = $CFG->wwwroot.'/theme/fordson/pix/catimages/'.$coursecat->idnumber.'.png';
-		} else {
-			$catimgurl = $CFG->wwwroot.'/theme/fordson/pix/default.png';
-		}
-		$content .= '<img height="80px" src="'.$catimgurl.'">';
-		//end of Mihir
-		
-                //Cat title
-        $categoryname = $coursecat->get_formatted_name();
-        $content .= '<div>';
-        $content .= '<div class="info-enhanced">';
-        $content .= '<span class="class-category">'.$categoryname.'</span>';
-        // ADD HERE A CLASS TO SHOW COURSES COUNT IN A CORNER OR WHERE YOU THINK IS BETTER.
-        if ($chelper->get_show_courses() == self::COURSECAT_SHOW_COURSES_COUNT) {
-            $coursescount = $coursecat->get_courses_count();
-            $content .= '  <span class="numberofcourses" title="'.get_string('numberofcourses').'">('.$coursescount.')</span>';
-        }
-        $content .= '</div>';
-        $content .= '</div>';
-        $content .= '</a>';
-
-        $content .= '</div>'; // BORDER DIV END.
-        $content .= '</div>'; // COL-MD-4 DIV END
-        if($totalcount == $this->countcategories){
-        }
-        ++$this->countcategories;
-		
-		
-		} // end of else Mihir 10 JUne 2020
-		
-		
-		
-		
         return $content;
     }
          
