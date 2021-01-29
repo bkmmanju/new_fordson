@@ -66,7 +66,27 @@ function theme_fordson_pluginfile($course, $cm, $context, $filearea, $args, $for
         return $theme->setting_file_serve('marketing5image', $args, $forcedownload, $options);
     } else if ($filearea === 'marketing6image') { // Login page image.
         return $theme->setting_file_serve('marketing6image', $args, $forcedownload, $options);
-    } else if ($filearea === 'slide1image') { // Login page image.
+    }else if ($filearea === 'upcoimgcourseimg1') { // Login page image.
+        return $theme->setting_file_serve('upcoimgcourseimg1', $args, $forcedownload, $options);
+    }else if ($filearea === 'upcoimgcourseimg10') { // Login page image.
+        return $theme->setting_file_serve('upcoimgcourseimg10', $args, $forcedownload, $options);
+    }else if ($filearea === 'upcoimgcourseimg2') { // Login page image.
+        return $theme->setting_file_serve('upcoimgcourseimg2', $args, $forcedownload, $options);
+    }else if ($filearea === 'upcoimgcourseimg3') { // Login page image.
+        return $theme->setting_file_serve('upcoimgcourseimg3', $args, $forcedownload, $options);
+    }else if ($filearea === 'upcoimgcourseimg4') { // Login page image.
+        return $theme->setting_file_serve('upcoimgcourseimg4', $args, $forcedownload, $options);
+    }else if ($filearea === 'upcoimgcourseimg4') { // Login page image.
+        return $theme->setting_file_serve('upcoimgcourseimg5', $args, $forcedownload, $options);
+    }else if ($filearea === 'upcoimgcourseimg5') { // Login page image.
+        return $theme->setting_file_serve('upcoimgcourseimg6', $args, $forcedownload, $options);
+    }else if ($filearea === 'upcoimgcourseimg7') { // Login page image.
+        return $theme->setting_file_serve('upcoimgcourseimg7', $args, $forcedownload, $options);
+    }else if ($filearea === 'upcoimgcourseimg8') { // Login page image.
+        return $theme->setting_file_serve('upcoimgcourseimg8', $args, $forcedownload, $options);
+    }else if ($filearea === 'upcoimgcourseimg9') { // Login page image.
+        return $theme->setting_file_serve('upcoimgcourseimg9', $args, $forcedownload, $options);
+    }else if ($filearea === 'slide1image') { // Login page image.
         return $theme->setting_file_serve('slide1image', $args, $forcedownload, $options);
     } else if ($filearea === 'slide2image') { // Login page image.
         return $theme->setting_file_serve('slide2image', $args, $forcedownload, $options);

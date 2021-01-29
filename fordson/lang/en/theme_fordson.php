@@ -277,7 +277,7 @@ $string['displaymycoursesdesc'] = 'Display enrolled courses for users in the top
 
 $string['mycoursetitle'] = 'Terminology';
 $string['mycoursetitledesc'] = 'Change the terminology for the "My Courses" link in the dropdown menu';
-$string['mycourses'] = 'My Pending Courses';
+$string['mycourses'] = 'My Courses';
 $string['myunits'] = 'My Units';
 $string['mymodules'] = 'My Modules';
 $string['myclasses'] = 'My Classes';
@@ -386,13 +386,30 @@ $string['score'] = 'Score/Start';
 $string['category'] = 'Category';
 $string['notstarted'] = 'Not Started';
 
-/* $string['morning'] = "Good Morning";
-$string['afternoon'] = "Good Afternoon";
-$string['night'] = "Good Night"; */
-
 $string['morning'] = "Welcome";
 $string['afternoon'] = "Welcome";
 $string['night'] = "Welcome";
 
+
+//Rachita: for upcoming courses.07/01/2021.
+$string['coursesectiontitle'] = 'Upcoming Course 1';
+$string['coursesectiontitle2'] = 'Upcoming Course 2';
+$string['coursesectiontitle3'] = 'Upcoming Course 3';
+$string['coursesectiontitle4'] = 'Upcoming Course 4';
+$string['coursesectiontitle5'] = 'Upcoming Course 5';
+$string['coursesectiontitle6'] = 'Upcoming Course 6';
+$string['coursesectiontitle7'] = 'Upcoming Course 7';
+$string['coursesectiontitle8'] = 'Upcoming Course 8';
+$string['coursesectiontitle9'] = 'Upcoming Course 9';
+$string['coursesectiontitle10'] = 'Upcoming Course 10';
+
+$string['upcomigcourse1desc'] = 'Add content for this Course';
+$string['upcomingcourses'] = 'Upcoming Courses';
+$string['coursetitle'] = 'Title';
+$string['enterupcomingcourse1'] = 'Enter Upcoming Course title';
+$string['upcomingcourseimage'] = 'Image';
+$string['upcomingcourseimage_desc'] = 'Upload upcoming course img';
+$string['url'] = 'Course Description';
 $string['availablevideos'] = "Available Videos";
 $string['mypendingcs'] = "My Pending Courses";
+$string['courselink_desc'] = 'Enter Course link';
